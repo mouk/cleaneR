@@ -14,6 +14,12 @@ describe "Remove unnecessary whitespaces" do
     should = "first line.\nThe next"
     clean(text).should == should
   end
+
+  it "removed dup new line and white spaces" do
+    text = "first line.\n \nThe next"
+    should = "first line.\nThe next"
+    clean(text).should == should
+  end
   it "removed unnecessary new line" do
     text = " this should\nbe one line"
     should = " this should be one line"
@@ -37,6 +43,11 @@ describe "Remove unnecessary whitespaces" do
   it "removes repeated  text" do
     text = " this should appear once this should appear once."
     should = " this should appear once."
+    clean(text).should == should
+  end
+  it "removes repeated white spaces between dots" do
+    text = " this should appear\n.  \n . . \n . this should appear once."
+    should = " this should appear .... this should appear once."
     clean(text).should == should
   end
 end
